@@ -1,10 +1,17 @@
 import styled from "styled-components";
-import logo from "./../assets/logo.svg";
+
+import CartButton from "./CartButton";
+
+import { useProductsContext } from "./../context";
+
 import { FaBars } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { links } from "./../utils/constants";
 
+import logo from "./../assets/logo.svg";
+
 const Navbar = () => {
+  const { openSidebar } = useProductsContext();
   return (
     <NavContainer>
       <div className="nav-center">
@@ -12,20 +19,21 @@ const Navbar = () => {
           <Link to="/">
             <img src={logo} alt="Comfy Sloth" />
           </Link>
-          <button type="button" className="nav-toggle">
+          <button type="button" className="nav-toggle" onClick={openSidebar}>
             {<FaBars />}
           </button>
         </div>
         <ul className="nav-links">
-          {links.map((link, index) => {
-            const { txt, route } = link;
+          {links.map((link) => {
+            const { id, txt, route } = link;
             return (
-              <li key={index}>
+              <li key={id}>
                 <Link to={route} children={txt} />
               </li>
             );
           })}
         </ul>
+        <CartButton />
       </div>
     </NavContainer>
   );

@@ -2,14 +2,17 @@ import { GiCompass, GiDiamondHard, GiStabbedNote } from "react-icons/gi";
 
 const links = [
   {
+    id: 1,
     txt: "home",
     route: "/",
   },
   {
+    id: 2,
     txt: "about",
     route: "/about",
   },
   {
+    id: 3,
     txt: "products",
     route: "/products",
   },

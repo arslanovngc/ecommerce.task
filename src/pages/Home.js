@@ -1,5 +1,12 @@
+import { Hero, FeaturedProducts } from "../components";
+
 const Home = () => {
-  return <div>Home</div>;
+  return (
+    <main>
+      <Hero />
+      <FeaturedProducts />
+    </main>
+  );
 };
 
 export default Home;

@@ -8,7 +8,7 @@ import { formatPrice } from "../utils/helpers";
 import { Loading, Error, PageRoute, Stars, ProductImage, AddToCart } from "../components";
 
 const ProductDetails = () => {
-  const { id } = useParams();
+  const { singleProductID } = useParams();
   const history = useNavigate();
 
   const {
@@ -19,8 +19,8 @@ const ProductDetails = () => {
   } = useProductsContext();
 
   useEffect(() => {
-    fetchProductDetails(`${url}${id}`);
-  }, [id]);
+    fetchProductDetails(`${url}${singleProductID}`);
+  }, [singleProductID]);
 
   useEffect(() => {
     if (error) {
@@ -37,8 +37,8 @@ const ProductDetails = () => {
     return <Error />;
   }
 
-  const { name, price, description, stock, stars, reviews, id: sku, company, images } = product;
-  console.log(images);
+  const { name, price, description, stock, stars, reviews, id: productID, company, images } = product;
+
   return (
     <Wrapper>
       <PageRoute title={name} product />
@@ -50,6 +50,23 @@ const ProductDetails = () => {
           <ProductImage images={images} />
           <section className="content">
             <h2>{name}</h2>
+            <Stars stars={stars} reviews={reviews} />
+            <h5 className="price">{formatPrice(price)}</h5>
+            <p className="desc"> {description} </p>
+            <p className="info">
+              <span>Available:</span>
+              {stock > 0 ? "In stock" : "out of stock"}
+            </p>
+            <p className="info">
+              <span>ID:</span>
+              {productID}
+            </p>
+            <p className="info">
+              <span>Brand:</span>
+              {company}
+            </p>
+            <hr />
+            {stock > 0 && <AddToCart product={product} />}
           </section>
         </div>
       </div>

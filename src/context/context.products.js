@@ -22,6 +22,9 @@ const initialState = {
   products_error: false,
   products: [],
   featured_products: [],
+  product_details_loading: false,
+  product_details_error: false,
+  product_details: {},
 };
 
 const ProductContext = createContext();
@@ -48,7 +51,7 @@ const ProductsProvider = ({ children }) => {
     }
   };
 
-  const fetchSingleProduct = async (url) => {
+  const fetchProductDetails = async (url) => {
     dispatch({ type: GET_PRODUCT_DETAILS_BEGIN });
 
     try {
@@ -65,7 +68,7 @@ const ProductsProvider = ({ children }) => {
   }, []);
 
   return (
-    <ProductContext.Provider value={{ ...state, openSidebar, closeSidebar, fetchSingleProduct }}>
+    <ProductContext.Provider value={{ ...state, openSidebar, closeSidebar, fetchProductDetails }}>
       {children}
     </ProductContext.Provider>
   );

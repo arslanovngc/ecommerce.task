@@ -8,5 +8,26 @@ import Hero from "./Hero";
 import FeaturedProducts from "./FeaturedProducts";
 import Services from "./Services";
 import Contact from "./Contact";
+import Stars from "./Stars";
+import ProductImage from "./ProductImage";
+import AddToCart from "./AddToCart";
+import Loading from "./Loading";
+import Error from "./Error";
 
-export { Navbar, PageRoute, Sidebar, Footer, StripeCheckout, CartContent, Hero, FeaturedProducts, Services, Contact };
+export {
+  Navbar,
+  PageRoute,
+  Sidebar,
+  Footer,
+  StripeCheckout,
+  CartContent,
+  Hero,
+  FeaturedProducts,
+  Services,
+  Contact,
+  Stars,
+  ProductImage,
+  AddToCart,
+  Loading,
+  Error,
+};

@@ -9,9 +9,9 @@ import {
   GET_PRODUCTS_BEGIN,
   GET_PRODUCTS_SUCCESS,
   GET_PRODUCTS_ERROR,
-  GET_SINGLE_PRODUCT_BEGIN,
-  GET_SINGLE_PRODUCT_SUCCESS,
-  GET_SINGLE_PRODUCT_ERROR,
+  GET_PRODUCT_DETAILS_BEGIN,
+  GET_PRODUCT_DETAILS_SUCCESS,
+  GET_PRODUCT_DETAILS_ERROR,
 } from "./actions";
 
 import reducer from "./reducers/reducer.products";
@@ -44,8 +44,19 @@ const ProductsProvider = ({ children }) => {
       const products = response.data;
       dispatch({ type: GET_PRODUCTS_SUCCESS, payload: products });
     } catch (e) {
-      console.log(e);
       dispatch({ type: GET_PRODUCTS_ERROR });
+    }
+  };
+
+  const fetchSingleProduct = async (url) => {
+    dispatch({ type: GET_PRODUCT_DETAILS_BEGIN });
+
+    try {
+      const response = await axios.get(url);
+      const singleProduct = response.data;
+      dispatch({ type: GET_PRODUCT_DETAILS_SUCCESS, payload: singleProduct });
+    } catch (e) {
+      dispatch({ type: GET_PRODUCT_DETAILS_ERROR });
     }
   };
 
@@ -53,7 +64,11 @@ const ProductsProvider = ({ children }) => {
     fetchProducts(url);
   }, []);
 
-  return <ProductContext.Provider value={{ ...state, openSidebar, closeSidebar }}>{children}</ProductContext.Provider>;
+  return (
+    <ProductContext.Provider value={{ ...state, openSidebar, closeSidebar, fetchSingleProduct }}>
+      {children}
+    </ProductContext.Provider>
+  );
 };
 
 const useProductsContext = () => {

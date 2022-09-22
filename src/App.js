@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Navbar, Sidebar, Footer } from "./components";
-import { Home, About, Cart, Products, Error } from "./pages";
+import { Home, About, Cart, Products, Error, ProductDetails } from "./pages";
 
 function App() {
   return (
@@ -15,6 +15,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/products" element={<Products />} />
+            <Route path="/products/:id" element={<ProductDetails />} />
             <Route path="/*" element={<Error />} />
           </Routes>
           <Footer />

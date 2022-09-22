@@ -4,9 +4,9 @@ import {
   GET_PRODUCTS_BEGIN,
   GET_PRODUCTS_SUCCESS,
   GET_PRODUCTS_ERROR,
-  GET_SINGLE_PRODUCT_BEGIN,
-  GET_SINGLE_PRODUCT_SUCCESS,
-  GET_SINGLE_PRODUCT_ERROR,
+  GET_PRODUCT_DETAILS_BEGIN,
+  GET_PRODUCT_DETAILS_SUCCESS,
+  GET_PRODUCT_DETAILS_ERROR,
 } from "../actions";
 
 const productReducer = (state, action) => {
@@ -32,25 +32,25 @@ const productReducer = (state, action) => {
     case GET_PRODUCTS_ERROR: {
       return { ...state, products_loading: false, products_error: true };
     }
-    case GET_SINGLE_PRODUCT_BEGIN: {
+    case GET_PRODUCT_DETAILS_BEGIN: {
       return {
         ...state,
-        single_product_loading: true,
-        single_product_error: false,
+        product_details_loading: true,
+        product_details_error: false,
       };
     }
-    case GET_SINGLE_PRODUCT_SUCCESS: {
+    case GET_PRODUCT_DETAILS_SUCCESS: {
       return {
         ...state,
-        single_product_loading: false,
-        single_product: action.payload,
+        product_details_loading: false,
+        product_details: action.payload,
       };
     }
-    case GET_SINGLE_PRODUCT_ERROR: {
+    case GET_PRODUCT_DETAILS_ERROR: {
       return {
         ...state,
-        single_product_loading: false,
-        single_product_error: true,
+        product_details_loading: false,
+        product_details_error: true,
       };
     }
     default: {
